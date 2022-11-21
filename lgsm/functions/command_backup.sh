@@ -43,6 +43,11 @@ fn_backup_init() {
 	# Backup file name with selfname and current date.
 	backupname="${selfname}-$(date '+%Y-%m-%d-%H%M%S')"
 
+	alert="custom"
+	alertsubject_custom="Alert - Starting Backup"
+	alertbody_custom="Backup of ${selfname} is starting. Server will shutdown."
+	alert.sh
+
 	info_distro.sh
 	fn_print_dots "Backup starting"
 	fn_script_log_info "Backup starting"
@@ -250,6 +255,12 @@ fn_backup_start_server() {
 		exitbypass=1
 		command_start.sh
 		fn_firstcommand_reset
+		
+		alert="custom"
+		alertsubject_custom="Backup complete"
+		alertbody_custom="Backup of ${selfname} is complete. Server running."
+		alerturl_custom="Backup File: ${backupname}.tar.gz"
+		alert.sh
 	fi
 }
 

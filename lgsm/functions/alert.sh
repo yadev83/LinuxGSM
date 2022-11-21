@@ -36,6 +36,15 @@ fn_alert_test() {
 	alertbody="Testing LinuxGSM Alert. No action to be taken."
 }
 
+fn_alert_custom() {
+	fn_script_log_info "Sending alert"
+	[ -n "${alertsubject_custom}" ] && alertsubject="${alertsubject_custom}" || alertsubject="Custom"
+	alertemoji="🚧"
+	alertsound="1"
+	[ -n "${alerturl_custom}" ] && alerturl="${alerturl_custom}" || alerturl=""
+	[ -n "${alertbody_custom}" ] && alertbody="${alertbody_custom}" || alertbody=""
+}
+
 fn_alert_restart() {
 	fn_script_log_info "Sending alert: Restarted: ${executable} not running"
 	alertsubject="Alert - ${selfname} - Restarted"
@@ -104,6 +113,8 @@ elif [ "${alert}" == "check-update" ]; then
 	fn_alert_check_update
 elif [ "${alert}" == "config" ]; then
 	fn_alert_config
+elif [ "${alert}" == "custom" ]; then
+	fn_alert_custom
 fi
 
 # Generate alert log.
