@@ -10,6 +10,11 @@ commandaction="Starting"
 functionselfname="$(basename "$(readlink -f "${BASH_SOURCE[0]}")")"
 fn_firstcommand_set
 
+alert="custom"
+alertsubject_custom="Alert - Starting Server"
+alertbody_custom="Server is starting..."
+alert.sh
+
 fn_start_teamspeak3() {
 	if [ ! -f "${servercfgfullpath}" ]; then
 		fn_print_warn_nl "${servercfgfullpath} is missing"

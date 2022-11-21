@@ -10,6 +10,11 @@ commandaction="Stopping"
 functionselfname="$(basename "$(readlink -f "${BASH_SOURCE[0]}")")"
 fn_firstcommand_set
 
+alert="custom"
+alertsubject_custom="Alert - Stopping Server"
+alertbody_custom="Server is stopping..."
+alert.sh
+
 # Attempts graceful shutdown by sending 'CTRL+c'.
 fn_stop_graceful_ctrlc() {
 	fn_print_dots "Graceful: CTRL+c"
